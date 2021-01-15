@@ -1,0 +1,169 @@
+\documentclass{article}
+\usepackage[cm]{fullpage}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{array} 
+\usepackage{booktabs, makecell, tabularx}
+\usepackage{fontawesome}
+
+\setmainfont{Corbel}
+
+\hypersetup{breaklinks=true,%
+pagecolor=white,%
+colorlinks=true,%
+linkcolor=cyan,%
+urlcolor=MyDarkBlue}
+
+\definecolor{MyDarkBlue}{rgb}{0,0.0,0.45}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formatting parameters  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newlength{\tabin}
+\setlength{\tabin}{1em}
+\newlength{\secsep}
+\setlength{\secsep}{0.mm}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0in}
+\setlength{\itemsep}{0in}
+\setlength{\topsep}{0in}
+\setlength{\tabcolsep}{0in}
+
+\definecolor{contactgray}{gray}{0.3}
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Template Definitions  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\lineunder}{\vspace*{-8pt} \\ \hspace*{-6pt} \hrulefill \\ \vspace*{-15pt}}
+\newcommand{\name}[1]{\begin{center}\textsc{\Huge#1}\\\end{center}}
+\newcommand{\program}[1]{\begin{center}\color{teal}\textsc{#1}\end{center}}
+\newcommand{\contact}[1]{\begin{center}\color{contactgray}{\small#1}\end{center}}
+
+\newenvironment{tabbedsection}[1]{
+  \begin{list}{}{
+      \setlength{\itemsep}{0pt}
+      \setlength{\labelsep}{0pt}
+      \setlength{\labelwidth}{0pt}
+      \setlength{\leftmargin}{\tabin}
+      \setlength{\rightmargin}{\tabin}
+      \setlength{\listparindent}{0pt}
+      \setlength{\parsep}{0pt}
+      \setlength{\parskip}{0pt}
+      \setlength{\partopsep}{0pt}
+      \setlength{\topsep}{#1}
+    }
+  \item[]
+}{\end{list}}
+
+\newenvironment{nospacetabbing}{
+    \begin{tabbing}
+}{\end{tabbing}\vspace{-1.2em}}
+
+\newenvironment{resume_header}{}{\vspace{0pt}}
+\newenvironment{resume_title}{}{\vspace{0pt}}
+
+\newenvironment{resume_subsection}[2][]{
+  \textbf{#2} \hfill {\footnotesize #1} \hspace{2em}
+  \begin{tabbedsection}{0.5\secsep}
+}{\end{tabbedsection}}
+
+\newenvironment{subitems}{
+  \renewcommand{\labelitemi}{-}
+  \begin{itemize}
+      \setlength{\small\labelsep}{1em}
+}{\end{itemize}}
+
+\newenvironment{resume_employer}[4]{
+  \vspace{\secsep}
+  \large\textbf{#1} \\
+  \indent {\small #2} \hfill {\footnotesize#3 (#4)}
+  \begin{tabbedsection}{0pt}
+  \begin{subitems}
+}{\end{subitems}\end{tabbedsection}}
+
+\newenvironment{resume_section}[1]{
+    \textbf{\Large\ruleline{\color{teal}{#1}}}
+  \begin{tabbedsection}{\secsep}
+}{\end{tabbedsection}}
+
+\newcolumntype{b}{X}
+\newcolumntype{s}{>{\hsize=.13\hsize}X}
+
+\newcommand*\ruleline[1]{\par\noindent\raisebox{0ex}{\makebox[\linewidth]{{#1}\hspace{1ex}\hrulefill}}}
+
+
+\begin{document}
+
+\begin{resume_header}
+    \name{Deni Arianto}
+      \begin{resume_title}
+      \color{blue}
+        \program{Software Engineer $\bullet$ Computer Science Major $\bullet$ Mercu Buana University}
+      \end{resume_title}
+    \contact{ \faEnvelope \hspace{0.2} deni.arianto1606@gmail.com \hspace{0.2cm} | \hspace{0.2cm} \faMobilePhone \hspace{0.2} 08222-7777-936 \hspace{0.2cm} | \hspace{0.2cm} \faLinkedinSquare \hspace{0.2} https://www.linkedin.com/in/deniar16/ } 
+    \end{resume_header}
+
+\begin{resume_section}{About Me}
+  \begin{table}[htbp]
+      \centering
+      \begin{tabularx}{\textwidth}{>{\raggedleft\arraybackslash}sb}
+          \textbf{Programming}    & \hspace{0.5cm}\small Java, Python (Basic), Go (Basic), \LaTeX  \\ 
+          \textbf{Database}       & \hspace{0.5cm}\small MySQL, PostgreSQL, MongoDB, Apache Cassandra \\ 
+          \textbf{Messaging}      & \hspace{0.5cm}\small Apache Kafka, RabbitMQ \\ 
+          \textbf{Web/Media}      & \hspace{0.5cm}\small HTML, CSS, Javascript\\ 
+          \textbf{Languages}      & \hspace{0.5cm}\small Fluent in English; Conversational Proficiency in Indonesian \\ 
+      \end{tabularx}
+  \end{table}
+\end{resume_section}
+
+\begin{resume_section}{Experience}
+    \begin{resume_employer}{tiket.com}
+        {Flight Ancillary Team}{Jakarta, Indonesia}{August 2020-now}
+        \item Define features along with Product Team and QA Team.
+        \item Implement Multi Insurance Features.
+        \item Refactor monolith insurance to reactive insurance using Java reactive stack.
+        \item Refactor cart features to standalone Ancillary service (Baggage, Meal, Seat).
+        \item Technology Research and Development. \\
+      \end{resume_employer}
+      \begin{resume_employer}{tiket.com}
+        {Car Team}{Jakarta, Indonesia}{January 2019-August 2020}
+        \item Define features along with Product Team and QA Team.
+        \item Implement Car Features.
+        \item Refactor monolith car to reactive insurance using Java reactive stack.
+        \item Technology Research and Development. \\
+      \end{resume_employer}
+      \begin{resume_employer}{tiket.com}
+        {Utilities Team}{Jakarta, Indonesia}{July 2018 - December 2018}
+        \item Implement notification service for sending email using Java reactive stack. \\
+      \end{resume_employer}
+    
+      \begin{resume_employer}{blanja.com}
+        {Utilities Team}{Jakarta, Indonesia}{August 2017 - June 2018}
+        \item Refactor email notification from monolith Dubbo framework.
+        \item Implement voucher feature. \\
+      \end{resume_employer}
+\end{resume_section}
+
+\begin{resume_section}{Awards and Honors}
+    \begin{resume_subsection}[(2012)]{INAICTA (Ministry of Information and Communication of Republic Indonesia)}
+    \begin{subitems}
+      \item Nominee of Indonesia ICT Awards 2012 on Category Creative and Innovative New Media.
+      \item Nominee of Indonesia ICT Awards 2012 on Category E-Government.
+      \end{subitems}
+    \end{resume_subsection}
+\end{resume_section}
+  
+  
+  \begin{resume_section}{Education}
+    \begin{resume_subsection}[Jakarta, Indonesia (2014--2018)]{Mercu Buana University}
+    \end{resume_subsection}
+    
+  \end{resume_section}
+
+  
+\end{document}
